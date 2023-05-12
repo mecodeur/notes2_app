@@ -14,7 +14,6 @@ class CustomTextFormField extends StatelessWidget {
   final int? maxLines;
   final Function(String)? onChanged;
   final bool obscureText;
-
   final void Function(String?)? onSaved;
 
   @override
@@ -26,10 +25,9 @@ class CustomTextFormField extends StatelessWidget {
       validator: (value) {
         if (value?.isEmpty ?? true) {
           return 'Field is requierd';
-        }else{
+        } else {
           return null;
         }
-
       },
       onChanged: onChanged,
       decoration: InputDecoration(
