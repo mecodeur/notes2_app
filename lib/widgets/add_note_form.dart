@@ -43,7 +43,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
             hintText: 'Content',
             maxLines: 5,
           ),
-          SizedBox(height: 60),
+          SizedBox(height: 40),
           BlocBuilder<AddNoteCubit, AddNoteState>(
             builder: (context, state) {
               return CustomButton(
@@ -60,8 +60,10 @@ class _AddNoteFormState extends State<AddNoteForm> {
                   }
                 },
               );
+
             },
           ),
+          SizedBox(height: 20),
         ],
       ),
     );
