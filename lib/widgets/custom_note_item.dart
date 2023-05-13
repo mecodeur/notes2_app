@@ -8,8 +8,6 @@ class CustomNoteItem extends StatelessWidget {
 
   final NoteModel note;
 
-
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -32,7 +30,9 @@ class CustomNoteItem extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 13.0,),
                 child: Text(note.subTitle, style: TextStyle(fontSize: 18, color: Colors.black.withOpacity(0.5)),),
               ),
-              trailing: IconButton(onPressed: (){}, icon: Icon(FontAwesomeIcons.trash, color: Colors.black, size: 25.0,),),
+              trailing: IconButton(onPressed: (){
+                note.delete();
+              }, icon: Icon(FontAwesomeIcons.trash, color: Colors.black, size: 25.0,),),
             ),
             Padding(
               padding: const EdgeInsets.only(right: 24.0),
