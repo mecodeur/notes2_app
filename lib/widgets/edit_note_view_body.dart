@@ -3,8 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes2_app/cubits/notes_cubit/notes_cubit.dart';
 import 'package:notes2_app/models/note_model.dart';
 
+import '../constants.dart';
+import 'colors_list_view.dart';
 import 'custom_app_bar.dart';
 import 'custom_text_field.dart';
+import 'edit_note_color_list.dart';
 
 class EditNoteViewBody extends StatefulWidget {
   const EditNoteViewBody({Key? key, required this.note}) : super(key: key);
@@ -21,33 +24,37 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Column(
-        children: [
-          CustomAppBar(title: 'Edite Note', icon: Icons.edit, onPressed: (){
-            widget.note.title = title ?? widget.note.title;
-            widget.note.subTitle = subTitle ?? widget.note.subTitle;
-            widget.note.save();
-            BlocProvider.of<NotesCubit>(context).fetchAllNotes();
-            Navigator.pop(context);
-          },),
-          SizedBox(height: 40),
-          CustomTextFormField(
-            hintText: '${widget.note.title}',
-            onChanged: (value){
-              title = value;
-            },
-          ),
-          SizedBox(height: 20),
-          CustomTextFormField(
-            hintText: '${widget.note.subTitle}',
-            onChanged: (value){
-              subTitle = value;
-            },
-            maxLines: 5,
-          ),
-        ],
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Column(
+          children: [
+            CustomAppBar(title: 'Edite Note', icon: Icons.edit, onPressed: (){
+              widget.note.title = title ?? widget.note.title;
+              widget.note.subTitle = subTitle ?? widget.note.subTitle;
+              widget.note.save();
+              BlocProvider.of<NotesCubit>(context).fetchAllNotes();
+              Navigator.pop(context);
+            },),
+            SizedBox(height: 40),
+            CustomTextFormField(
+              hintText: '${widget.note.title}',
+              onChanged: (value){
+                title = value;
+              },
+            ),
+            SizedBox(height: 20),
+            CustomTextFormField(
+              hintText: '${widget.note.subTitle}',
+              onChanged: (value){
+                subTitle = value;
+              },
+              maxLines: 5,
+            ),
+            SizedBox(height: 40),
+            EditeNoteColorList(note: widget.note,),
+          ],
+        ),
       ),
     );
   }
